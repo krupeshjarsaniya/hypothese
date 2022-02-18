@@ -23,6 +23,8 @@ import LeftArrow from './assets/images/left-arrow.png'
 import silyicon from './assets/images/smilyicon.png'
 import ImageParty from './assets/images/image 1.png'
 import { Chart } from './components/Chart';
+import { Slider } from './components/Slider';
+
 
 function App() {
   // const { height, width } = useWindowDimensions();
@@ -30,21 +32,7 @@ function App() {
   const [windowWidth, setWindowWidth] = useState(5)
 
   
-  const setWidth = () => {
-    const { innerWidth: width, innerHeight: height } = window;
-    // const data = useWindowDimensions();
-    if(width > 768) {
-      setWindowWidth(5)
-    } else {
-      setWindowWidth(1)
-    }
-  }
-  window.addEventListener('resize', setWidth)
 
-  
-  useEffect(() => {
-    setWidth()
-  },[])
 
   const [currency, setCurrency] = useState([
     {
@@ -140,71 +128,13 @@ function App() {
     },
   ])
 
-  const [bnbusdt, setBnbusdt] = useState([
-    {
-      name: "Bitcoin",
-      shortname: "BTC",
-      price: '2000',
-      image: BitCoin,
-      color: '#00C6EB',
-      srno: 1,
-    },
-    {
-      name: "Ethereum",
-      shortname: "ETH",
-      price: '5000',
-      image: ETHImge,
-      color: '#FA2256',
-      srno: 2,
-    },
-    {
-      name: "Tether",
-      shortname: "USDT",
-      price: '2000',
-      image: Tether,
-      color: '#00C6EB',
-      srno: 3,
-    },
-    {
-      name: "Binance Coin",
-      shortname: "BTC",
-      price: '5000',
-      image: Binance,
-      color: '#FA2256',
-      srno: 4,
-    },
-    {
-      name: "Ethereum",
-      shortname: "ETH",
-      price: '5000',
-      image: ETHImge,
-      color: '#FA2256',
-      srno: 5,
-    },
-    {
-      name: "Tether",
-      shortname: "USDT",
-      price: '2000',
-      image: Tether,
-      color: '#00C6EB',
-      srno: 6,
-    },
-    {
-      name: "Binance Coin",
-      shortname: "BTC",
-      price: '5000',
-      image: Binance,
-      color: '#FA2256',
-      srno: 7,
-    }
-  ])
-
   return (
     <div className="App">
       <Row className="m-0">
         <Col sm={12} md={10} lg={10}>
           <div className='containers ms-2 me-2 mt-3'>
             <NavbarMenu />
+            {/* Currency card design */}
             <Row className='mt-4'>
               {currency.map((item: any, index) => (
                 <Col sm={12} md={3} lg={3} key={index}>
@@ -213,28 +143,7 @@ function App() {
               ))}
             </Row>
             <div className="mt-4 section-2 p-3 position-relative">
-               <Row>
-                  <Col sm={12} md={4} lg={4} className="BNBUSDT-title">
-                    <h5 className="text-white ms-3">BNBUSDT $381.470</h5>
-                  </Col> 
-                  <Col sm={12} md={4} lg={4} className="text-center wifi-icon">
-                    <img src={WifiIcpn} className="w-8"/>  
-                  </Col> 
-                  <Col sm={12} md={4} lg={4} className="text-end timerdiv">
-                    <span className="time">03:40</span>
-                    <span className="text-white ms-1 minute">5m</span>
-                    <img src={timerImg} className="w-5 ms-2"/>
-                  </Col> 
-                </Row> 
-                <div className="mt-2 w-100">
-                  <Carousel show={windowWidth} responsive={true} slide={1} infinite={true} swiping={true} rightArrow={<img src={RightArrow} className="right-arrow-slider"/>} leftArrow={<img src={LeftArrow} className="left-arrow-slider"/>}>
-                    {bnbusdt.map((item: any, index) => (
-                      <div key={index}>
-                        <SimpleCard currency={item}/>
-                      </div>
-                    ))}
-                  </Carousel>
-                </div>
+                <Slider />
             </div>
             <div className="mt-4 section-3 p-3 mb-3 pt-0 pb-0">
               <Row>
